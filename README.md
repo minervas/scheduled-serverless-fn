@@ -4,8 +4,17 @@ Scheduling Recurring Code Execution Through Serverless Framework
 Motivation
 ----------
 
-Running code on a regular interval is a pretty common task in software development. 
-The first impulse for many developers that need to accomplish such a task is to start writing 
+Running code on a regular interval is a pretty common task in software development. With such common 
+use cases as:
+
+* manual backup of a database
+* cleaning up files on a regular interval
+* implementing a time to live (TTL) on resources
+* polling an API on a regular interval
+* re-subscribing to expired event notifications
+* sending emails on a regular basis
+
+The first impulse for many developers that need to accomplish such tasks is to start writing 
 a script of a language of their choice and then scheduling execution via the commandline tool, 
 `cron`. Then, once the script gains uptime requirements, web hosting, daemonization, scaling, and 
 continuous deployment all become concerns. These supporting tasks may end up becoming more work 
@@ -13,7 +22,7 @@ than coding up the actual work you are trying to get done in the first place.
 
 Fortunately, the big players in cloud computing services have solutions aimed at reducing the
 boiler-plate involved in running code in the cloud. These solutions are commonly referred to
-as `Serverless`. Serverless is one step beyond traditional PaaS offerings. With Severless you code 
+as `Serverless`. Serverless is one step beyond traditional PaaS offerings. With Severless your code 
 takes minimal time to "spin up" for the first time, only runs when invoked, is typically 
 cheaper than persistent servers when those servers are underutilized, autoscales, and requires less 
 deployment environment configuration than with most PaaS setups.
@@ -67,7 +76,7 @@ functions:
 ```
 
 After creating this configuration you'll want to create the entry point of your function, I named 
-mine `entrypoint.js`. Note, exported `scheduleFunction` whos name matches the handler function 
+mine `entrypoint.js`. Note, exported `scheduleFunction` whose name matches the handler function 
 name in our `serverless.yml`
 
 ```javascript
