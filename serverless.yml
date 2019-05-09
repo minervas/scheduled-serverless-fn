@@ -1,0 +1,25 @@
+# name your project here
+service: scheduled-serverless-fn
+
+# config relavent to the cloud provider that will run your serverless function
+provider:
+  # we will use AWS for this tutorial, but check out the list of all supported providers here:
+  # https://serverless.com/framework/docs/providers/
+  name: aws
+  # this example is coded in node.js but check out all the supported aws lambda runtimes here:
+  # https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+  runtime: nodejs8.10
+
+# config for all the functions that make up your service
+functions:
+  # the name of your function
+  scheduleFunction:
+    # {{path to the script containing the entrypoint of your function}}.{{the entrypoint function name}}
+    handler: entrypoint.scheduleFunction
+    # config for what sort of events trigger your function
+    events:
+      # invoke our function on the first minute of every even 15 minute interval
+      # check out
+      # https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html
+      # for AWS cron syntax
+      - schedule: cron(0/15 * * * ? *)
